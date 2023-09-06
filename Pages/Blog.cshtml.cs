@@ -8,17 +8,17 @@ using Microsoft.Extensions.Logging;
 
 namespace MyBlog.Pages
 {
-    public class Blog : PageModel
-    {
-        private readonly ILogger<Blog> _logger;
+	public class Blog : PageModel
+	{
+		private readonly ILogger<Blog> _logger;
 
-        public Blog(ILogger<Blog> logger)
-        {
-            _logger = logger;
-        }
+		public Blog(ILogger<Blog> logger)
+		{
+			_logger = logger;
+		}
 
-        public void OnGet()
-        {
-        }
-    }
+		public void OnGet()
+		{
+		}
+	}
 }
