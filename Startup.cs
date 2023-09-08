@@ -28,6 +28,7 @@ namespace MyBlog
 			services.AddRazorPages();
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddControllersWithViews();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,8 @@ namespace MyBlog
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+            app.UseStaticFiles();
 
 			app.UseRouting();
 
