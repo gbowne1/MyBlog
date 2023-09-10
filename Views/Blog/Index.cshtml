@@ -1,14 +1,23 @@
+@model List<BlogPost>
+
 @{
     ViewData["Title"] = "Blog";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-@foreach (var post in Model)
-{
-    <div>
-        <h2>@post.Title</h2>
-        <p>@post.Content</p>
+<div class="container">
+    <div class="row">
+        @foreach (var post in Model)
+        {
+            <div class="col-md-4 mt-3 mb-3">
+                <div class="card">
+                    <img src="@post.ImageUrl" class="card-img-top" alt="@post.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@post.Title</h5>
+                        <p class="card-text">@post.Summary</p>
+                        <a href="@Url.Action("Details", "Blog", new { id = post.Id })" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-}
+</div>
