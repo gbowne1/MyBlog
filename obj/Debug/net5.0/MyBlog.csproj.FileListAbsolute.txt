@@ -399,3 +399,4 @@
 /home/gbowne1/Documents/MyBlog/obj/Debug/net5.0/MyBlog.MvcApplicationPartsAssemblyInfo.cs
 /home/gbowne1/Documents/MyBlog/obj/Debug/net5.0/Razor/Pages/_Layout.cshtml.g.cs
 /home/gbowne1/Documents/MyBlog/bin/Debug/net5.0/wwwroot/css/site.css
+/home/gbowne1/Documents/MyBlog/obj/Debug/net5.0/Razor/Views/About/Index.cshtml.g.cs
