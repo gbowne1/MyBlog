@@ -45,10 +45,18 @@ namespace MyBlog
 
 			app.UseEndpoints(endpoints =>
 				{
-					endpoints.MapControllerRoute(
-						name: "default",
-						pattern: "{controller=Home}/{action=Index}/{id?}");
-				});
+				endpoints.MapControllerRoute(
+					name: "root",
+					pattern: "",
+					defaults: new { controller = "Home", action = "Index" });
+				endpoints.MapControllerRoute(
+					name: "blog",
+					pattern: "blog",
+					defaults: new { controller = "Blog", action = "Index" });
+				endpoints.MapControllerRoute(
+					name: "default",
+					pattern: "{controller=Home}/{action=Index}/{id?}");
+			});
 
 			app.UseEndpoints(endpoints =>
 			{
