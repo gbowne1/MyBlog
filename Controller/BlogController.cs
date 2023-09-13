@@ -19,5 +19,15 @@ namespace MyBlog.Controllers
 			var model = _posts.ToList();
 			return View(model);
 		}
+
+		public IActionResult Details(int id)
+		{
+			var post = _posts.FirstOrDefault(p => p.Id == id);
+			if (post == null)
+			{
+				return NotFound();
+			}
+			return View(post);
+		}
 	}
 }

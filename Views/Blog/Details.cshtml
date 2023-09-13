@@ -1,0 +1,21 @@
+@using MyBlog.Models
+
+@model BlogPost
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="card">
+                <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Title">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Title</h5>
+                    <p class="card-text">@Model.Content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
