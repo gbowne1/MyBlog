@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - My Blog</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.min.css" />
 </head>
 <body>
     <header>
@@ -38,14 +39,26 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-    <footer>
-        <hr />
-        <p>&copy; My Blog 2023</p>
-    </footer>
+    <footer class="mt-auto">
+		<hr />
+		<div class="d-flex justify-content-center">
+			<a href="#"><i class="fa fa-twitter fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-facebook fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-discord fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-stack-overflow fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-reddit fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-instagram fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-twitch fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-github fa-lg mx-3"></i></a>
+			<a href="#"><i class="fa fa-youtube fa-lg mx-3"></i></a>
+		</div>
+    <p class="text-center">&copy; My Blog 2023</p>
+	</footer>
     <script src="~/lib/jquery/jquery.min.js"></script>
 	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
