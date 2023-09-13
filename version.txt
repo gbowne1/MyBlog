@@ -32,4 +32,4 @@ Download .NET:
   https://aka.ms/dotnet-download
 
 Learn about .NET Runtimes and SDKs:
-  https://aka.ms/dotnet/runtimes-sdk-info I want to use the dotnet cli to create a layout and index page
+  https://aka.ms/dotnet/runtimes-sdk-info
