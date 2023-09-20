@@ -26,6 +26,7 @@ namespace MyBlog
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddRazorPages();
+			services.AddControllers();
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddControllersWithViews();

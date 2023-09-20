@@ -9,6 +9,7 @@ using MyBlog.Models;
 
 namespace MyBlog.Controllers
 {
+	[Route("[controller]/[action]")]
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
@@ -18,7 +19,7 @@ namespace MyBlog.Controllers
 			_logger = logger;
 		}
 
-		public IActionResult Index()
+		public ViewResult Index()
 		{
 			return View();
 		}

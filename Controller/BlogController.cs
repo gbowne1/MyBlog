@@ -7,22 +7,22 @@ namespace MyBlog.Controllers
 {
 	public class BlogController : Controller
 	{
-		private readonly List<BlogPost> _posts = new List<BlogPost>
+		private readonly ApplicationDbContext _context;
+
+		public BlogController(ApplicationDbContext context)
 		{
-			new BlogPost { Id = 1, Title = "First post", Content = "Lorem ipsum dolor sit amet" },
-			new BlogPost { Id = 2, Title = "Second post", Content = "Consectetur adipiscing elit" },
-			new BlogPost { Id = 3, Title = "Third post", Content = "Sed do eiusmod tempor incididunt" }
-		};
+			_context = context;
+		}
 
 		public IActionResult Index()
 		{
-			var model = _posts.ToList();
+			var model = _context.BlogPosts.ToList();
 			return View(model);
 		}
 
 		public IActionResult Details(int id)
 		{
-			var post = _posts.FirstOrDefault(p => p.Id == id);
+			var post = _context.BlogPosts.FirstOrDefault(p => p.Id == id);
 			if (post == null)
 			{
 				return NotFound();
