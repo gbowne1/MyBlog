@@ -401,3 +401,5 @@
 /home/gbowne1/Documents/MyBlog/bin/Debug/net5.0/wwwroot/css/site.css
 /home/gbowne1/Documents/MyBlog/obj/Debug/net5.0/Razor/Views/About/Index.cshtml.g.cs
 /home/gbowne1/Documents/MyBlog/obj/Debug/net5.0/Razor/Views/Blog/Details.cshtml.g.cs
+/home/gbowne1/Documents/MyBlog/bin/Debug/net5.0/Microsoft.AspNetCore.Server.Kestrel.Https.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net5.0/Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll

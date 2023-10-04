@@ -27,6 +27,7 @@ namespace MyBlog
 		{
 			services.AddRazorPages();
 			services.AddControllers();
+			services.AddMvc();
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddControllersWithViews();
