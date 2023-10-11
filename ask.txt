@@ -1,0 +1,67 @@
+I used the dotnet cl and the command dotnet new web -n MyBlog to make this project.
+
+$ dotnet --info
+.NET SDK (reflecting any global.json):
+ Version:   6.0.413
+ Commit:    10710f7d8e
+
+Runtime Environment:
+ OS Name:     debian
+ OS Version:  10
+ OS Platform: Linux
+ RID:         debian.10-x64
+ Base Path:   /usr/share/dotnet/sdk/6.0.413/
+
+global.json file:
+  Not found
+
+Host:
+  Version:      6.0.21
+  Architecture: x64
+  Commit:       e40b3abf1b
+
+.NET SDKs installed:
+  5.0.404 [/usr/share/dotnet/sdk]
+  5.0.408 [/usr/share/dotnet/sdk]
+  6.0.413 [/usr/share/dotnet/sdk]
+
+.NET runtimes installed:
+  Microsoft.AspNetCore.App 5.0.17 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.AspNetCore.App 6.0.21 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]
+  Microsoft.NETCore.App 5.0.17 [/usr/share/dotnet/shared/Microsoft.NETCore.App]
+  Microsoft.NETCore.App 6.0.21 [/usr/share/dotnet/shared/Microsoft.NETCore.App]
+
+Download .NET:
+  https://aka.ms/dotnet-download
+
+Learn about .NET Runtimes and SDKs:
+  https://aka.ms/dotnet/runtimes-sdk-info
+
+dotnet --list-sdks
+dotnet --list-runtimes
+
+dotnet dev-certs https
+dotnet dev-certs https --trust
+dotnet tool install -g dotnet-ef
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet --version
+dotnet new mvc -n Blog
+
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+dotnet add controller BlogController
+
+dotnet aspnet-codegenerator identity -dc YourDbContext --files "Account.Register;Account.Login"
+
+When building a blog system, there are several features you can consider adding. Here are some common features to get you started:
+
+    User Authentication: Implement user registration, login, and password management to allow users to create accounts and securely access the blog system.
+    Blog Post Management: Create functionality for users to create, edit, and delete blog posts. Include features like rich text editing, image uploads, and categorization of posts.
+    Commenting System: Enable users to leave comments on blog posts. Implement features like comment moderation, nested comments, and user notifications.
+    Search Functionality: Implement a search feature that allows users to search for specific blog posts based on keywords or categories.
+    Social Sharing: Add social sharing buttons to allow users to easily share blog posts on popular social media platforms.
+    Tagging and Categories: Enable users to tag blog posts with relevant keywords and categorize them into different topics or categories for easy navigation.
+    User Profiles: Create user profiles where users can manage their personal information, view their published posts, and interact with other users.
+    SEO Optimization: Implement search engine optimization techniques to improve the visibility of your blog system in search engine results.
+    RSS Feeds: Provide RSS feeds to allow users to subscribe to your blog and receive updates when new posts are published.
+    Analytics and Statistics: Integrate analytics tools to track website traffic, user engagement, and popular blog posts.

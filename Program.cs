@@ -20,6 +20,22 @@ namespace MyBlog
 			Host.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
+					webBuilder.ConfigureServices((hostContext, services) =>
+                    {
+                        // Add services here
+                    })
+					.Configure((hostContext, app) =>
+                    {
+                        if (hostContext.HostingEnvironment.IsDevelopment())
+                        {
+                            app.UseDeveloperExceptionPage();
+                        }
+
+                        app.UseRouting();
+
+                        // Configure middleware and endpoints here
+
+                    });
 					webBuilder.UseKestrel();
 					webBuilder.UseStartup<Startup>();
 				});

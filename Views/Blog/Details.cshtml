@@ -14,6 +14,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@Model.Title</h5>
                     <p class="card-text">@Model.Content</p>
+					<a href="@Url.Action("Details", "Blog", new { id = post.Id })" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,12 @@
+ @model AboutViewModel
+
 @{
-    ViewData["Title"] = "About";
+	ViewData["Title"] = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
 
 <div class="container">
     <h1>About My Blog</h1>

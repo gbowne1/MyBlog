@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,28 @@ namespace MyBlog
 			services.AddMvc();
 			services.AddDbContext<ApplicationDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			// Add ASP.NET Core Identity
+			services.AddIdentity<ApplicationUser, IdentityRole>()
+			.AddEntityFrameworkStores<ApplicationDbContext>()
+			.AddDefaultTokenProviders();
+
+			// Configure authentication options
+			services.Configure<IdentityOptions>(options =>
+			{
+			// Password settings
+			options.Password.RequireDigit = true;
+			options.Password.RequiredLength = 8;
+			// Add more password requirements as needed
+
+			// Lockout settings
+			options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+			options.Lockout.MaxFailedAccessAttempts = 5;
+			// Add more lockout settings as needed
+
+			// User settings
+			options.User.RequireUniqueEmail = true;
+			});
 			services.AddControllersWithViews();
 		}
 
@@ -45,6 +68,9 @@ namespace MyBlog
 
 			app.UseRouting();
 
+			app.UseAuthentication();
+    		app.UseAuthorization();
+
 			app.UseEndpoints(endpoints =>
 				{
 				endpoints.MapControllerRoute(
@@ -58,6 +84,10 @@ namespace MyBlog
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapControllerRoute(
+					name: "about",
+					pattern: "about",
+					defaults: new { controller = "About", action = "Index" });
 			});
 
 			app.UseEndpoints(endpoints =>
