@@ -1,8 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyBlog.Models {
 
+	public class ApplicationUser : IdentityUser
+	{
+
+	}
 	public class ApplicationDbContext : DbContext
 	{
 		public DbSet<BlogPost> BlogPosts { get; set; }

@@ -395,3 +395,9 @@
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/MyBlog.genruntimeconfig.cache
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/ref/MyBlog.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/wwwroot/js/site.js
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.MyBlog.Microsoft.AspNetCore.StaticWebAssets.props
+/home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.build.MyBlog.props
+/home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.MyBlog.props
+/home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.MyBlog.props
+/home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets.pack.json
