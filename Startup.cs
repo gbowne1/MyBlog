@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyBlog.Models;
+using ErrorModel.Models;
 
 namespace MyBlog
 {
@@ -64,7 +65,12 @@ namespace MyBlog
 			{
 				app.UseDeveloperExceptionPage();
 			}
-
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+				app.useHsts();
+			}
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
 			app.UseRouting();
