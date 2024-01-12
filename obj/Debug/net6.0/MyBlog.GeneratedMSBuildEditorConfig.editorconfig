@@ -16,14 +16,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/gbowne1/Documents/MyBlog
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/gbowne1/Documents/MyBlog/Pages/Blog.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQmxvZy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/gbowne1/Documents/MyBlog/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/gbowne1/Documents/MyBlog/Views/About/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
