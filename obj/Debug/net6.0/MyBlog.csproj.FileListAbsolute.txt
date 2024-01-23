@@ -401,3 +401,8 @@
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.MyBlog.props
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.MyBlog.props
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/staticwebassets.pack.json
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.Design.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.SqlServer.Design.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/System.Diagnostics.DiagnosticSource.dll
