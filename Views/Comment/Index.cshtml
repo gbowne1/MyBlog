@@ -1,0 +1,10 @@
+@model IEnumerable<MyBlog.Models.Comment>
+
+@foreach (var comment in Model)
+{
+    <div>
+        <p>@comment.Content</p>
+        <small>By: @comment.Author.UserName</small>
+        <small>At: @comment.DatePosted</small>
+    </div>
+}
