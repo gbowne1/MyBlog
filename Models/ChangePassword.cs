@@ -1,4 +1,5 @@
   using System;
+  using MyBlog.Models;
 
   namespace MyBlog.Models
   {

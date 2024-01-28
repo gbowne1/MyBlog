@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using MyBlog.Models;
 
 public class RegisterViewModel
 {

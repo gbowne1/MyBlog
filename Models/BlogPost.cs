@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using MyBlog.Models;
 
+namespace MyBlog.Models {
 public class BlogPost
 {
 	[Key]
@@ -24,4 +25,5 @@ public class BlogPost
 
     public string ApplicationUserId { get; set; }
     public ApplicationUser Author { get; set; }
+}
 }
