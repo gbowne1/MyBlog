@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using MyBlog.Models;
+
 public class AboutController : Controller
 {
 	public IActionResult Index()

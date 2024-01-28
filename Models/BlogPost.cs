@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MyBlog.Models;
+
 public class BlogPost
 {
 	[Key]
@@ -19,4 +21,7 @@ public class BlogPost
 	public string ImageUrl { get; set; }
 	[StringLength(500)]
 	public string Summary { get; set; }
+
+    public string ApplicationUserId { get; set; }
+    public ApplicationUser Author { get; set; }
 }
