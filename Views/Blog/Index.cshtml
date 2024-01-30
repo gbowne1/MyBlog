@@ -1,4 +1,4 @@
-@model List<MyBlog.Models.BlogPost>.
+@model List<MyBlog.Models.BlogPost>
 
 @{
     ViewData["Title"] = "Blog";
@@ -13,6 +13,7 @@
                     <img src="@post.ImageUrl" class="card-img-top" alt="@post.Title">
                     <div class="card-body">
                         <h5 class="card-title">@post.Title</h5>
+                        <p class="card-text">@post.PublishDate.ToString("MM/dd/yyyy")</p>
                         <p class="card-text">@post.Summary</p>
                         <a href="@Url.Action("Details", "Blog", new { id = post.Id })" class="btn btn-primary">Read More</a>
                     </div>

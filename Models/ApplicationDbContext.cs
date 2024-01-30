@@ -5,10 +5,6 @@ using MyBlog.Models;
 
 namespace MyBlog.Models {
 
-	public class ApplicationUser : IdentityUser
-	{
-
-	}
 	public class ApplicationDbContext : DbContext
 	{
 		public DbSet<BlogPost> BlogPosts { get; set; }
