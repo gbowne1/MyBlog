@@ -112,7 +112,6 @@
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Configuration.KeyPerFile.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Configuration.UserSecrets.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Configuration.Xml.dll
-/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.DependencyInjection.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Diagnostics.HealthChecks.dll
@@ -129,7 +128,6 @@
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Identity.Stores.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Localization.Abstractions.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Localization.dll
-/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Logging.Abstractions.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Logging.Configuration.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Logging.Console.dll
 /home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/refs/Microsoft.Extensions.Logging.Debug.dll
@@ -401,3 +399,5 @@
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/MyBlog.pdb
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/MyBlog.genruntimeconfig.cache
 /home/gbowne1/Documents/MyBlog/obj/Debug/net6.0/ref/MyBlog.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/gbowne1/Documents/MyBlog/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll

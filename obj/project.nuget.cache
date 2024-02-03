@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TiLt+8oUX5xCMerGKum/SZ6HJk7g6fMqrDehNzs0sar+ZqMiso1ptChQRMBW3XcgphYwtxlVgx/jRAefudZ+NA==",
+  "dgSpecHash": "KsrZm24FrLXZ+7rCTu1cfGkydQJ0gl8QyKOUjmS/NSwniaUYiLWJ9k1FmbHfwU5KeLLRmF064uCAAgZWTizcKg==",
   "success": true,
   "projectFilePath": "/home/gbowne1/Documents/MyBlog/MyBlog.csproj",
   "expectedPackageFiles": [
@@ -59,7 +59,7 @@
     "/home/gbowne1/.nuget/packages/microsoft.extensions.configuration.environmentvariables/2.2.0/microsoft.extensions.configuration.environmentvariables.2.2.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.configuration.fileextensions/2.2.0/microsoft.extensions.configuration.fileextensions.2.2.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.dependencyinjection/6.0.1/microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
-    "/home/gbowne1/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/gbowne1/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.dependencymodel/5.0.0/microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.fileproviders.abstractions/5.0.0/microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.fileproviders.physical/5.0.0/microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
@@ -68,7 +68,7 @@
     "/home/gbowne1/.nuget/packages/microsoft.extensions.identity.core/6.0.0/microsoft.extensions.identity.core.6.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.identity.stores/6.0.0/microsoft.extensions.identity.stores.6.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.logging/6.0.0/microsoft.extensions.logging.6.0.0.nupkg.sha512",
-    "/home/gbowne1/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/home/gbowne1/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.objectpool/2.2.0/microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/gbowne1/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
