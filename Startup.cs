@@ -89,12 +89,32 @@ namespace MyBlog
                         pattern: "blog",
                         defaults: new { controller = "Blog", action = "Index" });
                     endpoints.MapControllerRoute(
+                        name: "blogdetails",
+                        pattern: "blog/details/{id}",
+                        defaults: new { controller = "Blog", action = "Details" });
+                    endpoints.MapControllerRoute(
+                        name: "createblog",
+                        pattern: "blog/create",
+                        defaults: new { controller = "Blog", action = "Create" });
+                    endpoints.MapControllerRoute(
+                        name: "editblog",
+                        pattern: "blog/edit/{id}",
+                        defaults: new { controller = "Blog", action = "Edit" });
+                    endpoints.MapControllerRoute(
+                        name: "login",
+                        pattern: "account/login",
+                        defaults: new { controller = "Account", action = "Login" });
+                    endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
                     endpoints.MapControllerRoute(
                         name: "about",
                         pattern: "about",
                         defaults: new { controller = "About", action = "Index" });
+                    endpoints.MapControllerRoute(
+                        name: "createcomment",
+                        pattern: "comment/create",
+                        defaults: new { controller = "Comment", action = "Create" });
                 });
 
             app.UseEndpoints(endpoints =>

@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using MyBlog.Models;
@@ -9,27 +9,38 @@ namespace MyBlog.Controllers
 {
     public class CommentController : Controller
     {
-        // GET: /Comment/
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public CommentController(ApplicationDbContext context)
         {
-            // Your logic to retrieve and display comments
-            return View();
+            _context = context;
+        }
+
+        // GET: /Comment/
+        public async Task<IActionResult> Index()
+        {
+            var comments = await _context.Comments.Include(c => c.Author).Include(c => c.BlogPost).ToListAsync();
+            return View(comments);
         }
 
         // GET: /Comment/Create
         public IActionResult Create()
         {
-            // Your logic to handle the creation of a new comment
             return View();
         }
 
         // POST: /Comment/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Comment comment)
+        public async Task<IActionResult> Create(Comment comment)
         {
-            // Your logic to save the new comment to the database
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.Add(comment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(comment);
         }
 
         // Other action methods for editing, deleting, etc.

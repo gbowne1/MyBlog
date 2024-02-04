@@ -12,6 +12,7 @@ namespace MyBlog.Models
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
 
         // Other DbSet properties for your entities
