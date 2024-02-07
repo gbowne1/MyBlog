@@ -1,13 +1,28 @@
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model MyBlog.Models.BlogPost
+
 @{
     ViewData["Title"] = "Editor";
 }
 
 <h2>Editor</h2>
 
-<div>
-
-</div>
+<form method="post">
+    <div>
+        <label for="Content">Content</label>
+        <textarea id="Content" name="Content">@Html.Raw(@Model.Content)</textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
 
 @section Scripts {
-
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#Content', // ID of the textarea
+            plugins: 'lists link image paste', // List of plugins
+            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image', // Toolbar buttons
+            // Other configurations...
+        });
+    </script>
 }
