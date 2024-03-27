@@ -24,12 +24,53 @@ namespace MyBlog.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("your_connection_string",
+            var connectionStriong = Environment.GetEnvironmentVariable("MyBlogDbConnectionString");
+            optionsBuilder.UseSqlServer(connectionString,
                 options => options.EnableRetryOnFailure(
                     maxRetryCount: 5,
                     maxRetryDelay: TimeSpan.FromSeconds(30),
                     errorNumbersToAdd: null)
                 );
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BlogPost>()
+            .Property(b => b.Title)
+            .IsRequired()
+            .HasMaxLength(255);
+
+            // Configure BlogPost-Category relationship once (remove the duplicate):
+            modelBuilder.Entity<BlogPost>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Posts)
+                .HasForeignKey(p => p.CategoryId);
+
+            // Choose either one of these for the user-post relationship:
+            modelBuilder.Entity<BlogPost>()
+                .HasOne(p => p.Author)
+                .WithMany(u => u.Posts)
+                .HasForeignKey(p => p.ApplicationUserId);
+
+            // Configure Comment-BlogPost relationship
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.BlogPost)
+                .WithMany(p => p.Comments)
+                .HasForeignKey(c => c.BlogPostId);
+
+             modelBuilder.Entity<Tag>()
+                .HasMany(t => t.BlogPosts)
+                .WithMany(p => p.Tags) // Assuming a many-to-many relationship
+                .UsingEntity<Dictionary<string, object>>(
+                    "TagBlogPost",
+                    j => j
+                        .HasOne<Tag>()
+                        .WithMany()
+                        .HasForeignKey("TagId"),
+                    j => j
+                        .HasOne<BlogPost>()
+                        .WithMany()
+                        .HasForeignKey("BlogPostId"));
+                }
     }
 }

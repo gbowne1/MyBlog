@@ -1,19 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MyBlog.Models;
 
-namespace MyBlog.Controllers
+public interface IBlogPostService // Assuming interface is defined elsewhere
 {
-    public class EditorController : Controller
+    // Methods for managing blog posts
+}
+
+public class EditorController : Controller
+
+{
+    private readonly IBlogPostService blogPostService;
+
+    public EditorController(IBlogPostService blogPostService)
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
+        _blogPostService = blogPostService;
+    }
+
+
+    public ActionResult Index()
+    {
+        return View();
     }
 }

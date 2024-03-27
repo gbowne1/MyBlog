@@ -43,6 +43,44 @@ namespace MyBlog.Controllers
             return View(comment);
         }
 
+        // GET: /Comment/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var comment = await _context.Comments
+                .Include(c => c.Author)
+                .Include(c => c.BlogPost)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            // Authorization check (replace with your logic)
+            if (comment.Author.Id != HttpContext.User.Identity.GetUserId())
+            {
+                return Forbid(); // Or display an appropriate error message
+            }
+
+            return View(comment);
+        }
+
+        // POST: /Comment/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var comment = await _context.Comments.FindAsync(id);
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         // Other action methods for editing, deleting, etc.
     }
 }
