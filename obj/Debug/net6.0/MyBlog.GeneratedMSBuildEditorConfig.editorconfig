@@ -56,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/gbowne1/Documents/MyBlog/Views/Blog/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9TZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/gbowne1/Documents/MyBlog/Views/Comment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29tbWVudC9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

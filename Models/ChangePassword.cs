@@ -1,5 +1,3 @@
-using System;
-using MyBlog.Models;
 using System.ComponentModel.DataAnnotations;
 
   namespace MyBlog.Models

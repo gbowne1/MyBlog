@@ -13,7 +13,7 @@ public interface IBlogPostService // Assuming interface is defined elsewhere
 public class EditorController : Controller
 
 {
-    private readonly IBlogPostService blogPostService;
+    private readonly IBlogPostService _blogPostService;
 
     public EditorController(IBlogPostService blogPostService)
     {

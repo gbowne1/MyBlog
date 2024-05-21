@@ -11,5 +11,6 @@ public class ApplicationUser : IdentityUser
         public string Location { get; set; }
         public string Website { get; set; }
         public ICollection<BlogPost> Posts { get; set; }
+        public IList<UserLoginInfo> Logins { get; set; }
     }
 }

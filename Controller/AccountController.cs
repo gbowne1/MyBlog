@@ -13,9 +13,8 @@ public class AccountController : Controller
        _signInManager = signInManager;
    }
 
-   // Actions for login, logout, password management, etc.
-
    [HttpPost]
+   [ValidateAntiForgeryToken]
    public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (ModelState.IsValid)
@@ -27,9 +26,29 @@ public class AccountController : Controller
                 return RedirectToAction("Index", "Home");
             }
 
+            switch (result.IsNotAllowed)
+            {
+                case true:
+                    ModelState.AddModelError(string.Empty, "Your account is not allowed to login at this time.");
+                    break;
+            }
+
+            switch (result.IsLockedOut)
+            {
+                case true:
+                    ModelState.AddModelError(string.Empty, "Your account is locked out.");
+                    break;
+            }
+
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
         }
 
         return View(model);
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
     }
 }

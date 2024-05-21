@@ -1,3 +1,4 @@
+using MyBlog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +23,8 @@ public class Startup
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
         services.AddTransient<IAboutContentService, AboutContentService>();
+        services.AddScoped<IBlogPostService, IBlogPostService>();
+        // services.AddMvcOptions<>();
 
         services.AddDefaultIdentity<IdentityUser>()
             .AddEntityFrameworkStores<ApplicationDbContext>();

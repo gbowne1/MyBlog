@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +41,19 @@ namespace MyBlog.Controllers
             return View(post);
         }
 
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return RedirectToAction("Index"); // Redirect to homepage if search term is empty
+            }
+
+            var model = await _context.BlogPosts
+                .Where(p => p.Title.Contains(searchTerm) || p.Content.Contains(searchTerm))
+                .ToListAsync();
+
+            return View(model);
+        }
         // Other action methods...
     }
 }

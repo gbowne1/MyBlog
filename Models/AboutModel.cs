@@ -1,5 +1,3 @@
-using MyBlog.Models;
-
 public class AboutModel
 {
     public string Title { get; set; }

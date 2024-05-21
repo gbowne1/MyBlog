@@ -1,8 +1,6 @@
-using System;
-
 namespace MyBlog.Models
 {
-	public class ErrorModel
+    public class ErrorModel
     {
         public string RequestId { get; set; }
         public string ErrorMessage { get; set; }

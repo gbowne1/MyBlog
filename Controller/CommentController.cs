@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using MyBlog.Models;
+
 
 namespace MyBlog.Controllers
 {
@@ -62,7 +65,7 @@ namespace MyBlog.Controllers
             }
 
             // Authorization check (replace with your logic)
-            if (comment.Author.Id != HttpContext.User.Identity.GetUserId())
+            if (comment.Author.Id != ((ClaimsPrincipal)HttpContext.User).FindFirstValue(ClaimTypes.NameIdentifier))
             {
                 return Forbid(); // Or display an appropriate error message
             }

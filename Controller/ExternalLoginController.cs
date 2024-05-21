@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Models;
+using System.Linq;
 
 namespace MyBlog.Controllers
 {
@@ -89,19 +90,6 @@ namespace MyBlog.Controllers
             return BadRequest("Unexpected error"); // Handle other potential errors
         }
 
-        // View for handling cases where the user needs to be created or additional details are required after external login
-        public IActionResult ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model)
-        {
-            if (model == null)
-            {
-                return BadRequest("Invalid model");
-            }
-
-            ViewData["ReturnUrl"] = model.ReturnUrl;
-            return View(model);
-        }
-    }
-
         // POST action for handling user creation or additional details after external login (optional)
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -130,7 +118,10 @@ namespace MyBlog.Controllers
                 var createResult = await _userManager.CreateAsync(user);
                 if (!createResult.Succeeded)
                 {
-                    AddErrors(createResult); // Handle user creation errors (optional)
+                    foreach (var error in createResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description); // Add errors to ModelState
+                    }
                     return View("ExternalLoginConfirmation", model);
                 }
             }
@@ -151,5 +142,6 @@ namespace MyBlog.Controllers
             }
 
             return BadRequest("Unexpected error"); // Handle other potential errors
+        }
     }
 }
