@@ -36,5 +36,7 @@ namespace MyBlog.Models
 
         public ICollection<Comment> Comments { get; set; }
 
+        public ICollection<TagBlogPosts> TagBlogPosts { get; set; }
+
     }
 }

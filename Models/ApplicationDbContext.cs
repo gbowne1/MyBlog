@@ -1,16 +1,13 @@
 using System;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MyBlog.Models;
 
 namespace MyBlog.Models
 {
-
     public class ApplicationDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
+        public IConfiguration _configuration;
 
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -53,35 +50,35 @@ namespace MyBlog.Models
 
             // Configure BlogPost-Category relationship
             modelBuilder.Entity<BlogPost>()
-                .HasOne(p => p.Category)
-                .WithMany(c => c.Posts)
-                .HasForeignKey(p => p.CategoryId);
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Posts)
+            .HasForeignKey(p => p.CategoryId);
 
             // Configure User-Post relationship
             modelBuilder.Entity<BlogPost>()
-                .HasOne(p => p.Author)  // One-to-many with ApplicationUser
-                .WithMany(u => u.Posts)  // Author can have many posts
-                .HasForeignKey(p => p.ApplicationUserId);    // Blog post can have many tags
+            .HasOne(p => p.Author)  // One-to-many with ApplicationUser
+            .WithMany(u => u.Posts)  // Author can have many posts
+            .HasForeignKey(p => p.ApplicationUserId);
 
             // Configure Comment-BlogPost relationship
             modelBuilder.Entity<Comment>()
-                .HasOne(c => c.BlogPost)
-                .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.BlogPostId);
+            .HasOne(c => c.BlogPost)
+            .WithMany(p => p.Comments)
+            .HasForeignKey(c => c.BlogPostId);
 
             modelBuilder.Entity<Tag>()
-                .HasMany(t => t.BlogPosts) // Tag can have many BlogPosts
-                .WithMany(p => p.Tags) // BlogPost can have many Tags (configured later)
-                .UsingEntity<TagBlogPosts>(
-                    "TagBlogPost",  // Table name for the junction table
-                    j => j.HasOne(t => t.Tag).WithMany(t => t.TagBlogPosts).HasForeignKey(t => t.TagId),
-                    j => j.HasOne(p => p.BlogPost).WithMany(p => p.TagBlogPosts).HasForeignKey(p => p.BlogPostId)
-                );
+            .HasMany(t => t.TagBlogPosts)
+            .WithOne(tb => tb.Tag)
+            .HasForeignKey(tb => tb.TagId);
 
-            // Then, configure the relationship from BlogPost's perspective
+            // Correctly configure the many-to-many relationship between Tag and BlogPost via TagBlogPosts
             modelBuilder.Entity<BlogPost>()
-                .WithMany(p => p.Tags) // Redundant but explicit (BlogPost can have many Tags)
-                .HasForeignKey(p => p.BlogPostId); // Foreign key for the many-to-many relationship (already defined in TagBlogPosts)
+            .HasMany(bp => bp.TagBlogPosts)
+            .WithOne(tb => tb.BlogPost)
+            .HasForeignKey(tb => tb.BlogPostId);
+
+            modelBuilder.Entity<TagBlogPosts>()
+            .HasKey(tb => new { tb.TagId, tb.BlogPostId });
 
         }
     }
