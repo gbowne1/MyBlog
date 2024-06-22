@@ -16,7 +16,7 @@ namespace MyBlog.Controllers
 
         // GET action for displaying the Reset Password view
         [HttpGet]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string? code = null)
         {
             if (code == null)
             {
@@ -37,11 +37,29 @@ namespace MyBlog.Controllers
                 return View(model);
             }
 
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                ModelState.AddModelError("Email", "Email is required.");
+                return View(model);
+            }
+
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Handle the case where the user with the email is not found (optional)
                 return RedirectToAction("ForgotPassword", "Account"); // Redirect to forgot password page (optional)
+            }
+
+            if (string.IsNullOrEmpty(model.Code))
+            {
+                ModelState.AddModelError("Code", "Reset code is required.");
+                return View(model);
+            }
+
+            if (string.IsNullOrEmpty(model.Password))
+            {
+                ModelState.AddModelError("Password", "New password is required.");
+                return View(model);
             }
 
             var resetResult = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);

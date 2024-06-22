@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using MyBlog.Models; // Make sure this matches the namespace where your BlogPost model is located
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using MyBlog.Models;
 
 namespace MyBlog.Services
 {
     public class BlogPostService : IBlogPostService
     {
-        private readonly ApplicationDbContext _context; // Assuming you have a DbContext named MyBlogContext
+        private readonly ApplicationDbContext _context;
 
         public BlogPostService(ApplicationDbContext context)
         {
@@ -19,7 +19,7 @@ namespace MyBlog.Services
             return _context.BlogPosts.ToList();
         }
 
-        public BlogPost GetBlogPostById(int id)
+        public BlogPost? GetBlogPostById(int id)
         {
             return _context.BlogPosts.Find(id);
         }
@@ -39,7 +39,7 @@ namespace MyBlog.Services
         public void DeleteBlogPost(int id)
         {
             var blogPost = _context.BlogPosts.Find(id);
-            if (blogPost!= null)
+            if (blogPost != null)
             {
                 _context.BlogPosts.Remove(blogPost);
                 _context.SaveChanges();

@@ -4,7 +4,7 @@
 {
     <div>
         <p>@comment.Content</p>
-        <small>By: @comment.Author.UserName</small>
+        <small>By: @(comment.Author?.UserName ?? "Anonymous")</small>
         <small>At: @comment.DatePosted</small>
     </div>
 }

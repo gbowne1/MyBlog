@@ -32,6 +32,11 @@ namespace MyBlog.Controllers
                 return NotFound("Unable to find the user");
             }
 
+            if (user.Logins == null)
+            {
+                return NotFound("No logins found for the user");
+            }
+
             var loginInfo = user.Logins.FirstOrDefault(x => x.LoginProvider == loginProvider && x.ProviderKey == providerKey);
             if (loginInfo == null)
             {
@@ -58,7 +63,7 @@ namespace MyBlog.Controllers
         }
 
         // Callback action to handle successful external login
-        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null)
+        public async Task<IActionResult> ExternalLoginCallback(string? returnUrl = null)
         {
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
@@ -106,42 +111,42 @@ namespace MyBlog.Controllers
                 return View("ExternalLoginConfirmation", model); // Re-render view if info not found
             }
 
-            // Implement logic to create a new user or associate the login information with an existing user based on your requirements
-            // You might need to:
+            if (string.IsNullOrEmpty(model.Email))
+            {
+                ModelState.AddModelError(string.Empty, "Email is required.");
+                return View("ExternalLoginConfirmation", model);
+            }
 
-            var user = await _userManager.FindByEmailAsync(model.Email); // Check if user already exists by email (optional)
+            var user = await _userManager.FindByEmailAsync(model.Email);
 
             if (user == null)
             {
-                // Create a new user with the provided email (or other relevant details from the model)
-                user = new ApplicationUser { UserName = model.Email, Email = model.Email }; // Adapt this based on your user model
+                user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var createResult = await _userManager.CreateAsync(user);
                 if (!createResult.Succeeded)
                 {
                     foreach (var error in createResult.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, error.Description); // Add errors to ModelState
+                        ModelState.AddModelError(string.Empty, error.Description);
                     }
                     return View("ExternalLoginConfirmation", model);
                 }
             }
 
-            // Add the login information to the user's account
             await _userManager.AddLoginAsync(user, info);
 
-            // Sign the user in with the newly associated login information
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
-                return LocalRedirect(model.ReturnUrl ?? Url.Content("~/")); // Redirect to desired location
+                return LocalRedirect(model.ReturnUrl ?? Url.Content("~/"));
             }
 
             if (result.RequiresTwoFactor)
             {
-                return RedirectToAction("SendCode", new { ReturnUrl = model.ReturnUrl }); // Handle 2FA if needed
+                return RedirectToAction("SendCode", new { ReturnUrl = model.ReturnUrl });
             }
 
-            return BadRequest("Unexpected error"); // Handle other potential errors
+            return BadRequest("Unexpected error");
         }
     }
 }

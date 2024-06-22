@@ -13,12 +13,18 @@ public class AccountController : Controller
        _signInManager = signInManager;
    }
 
-   [HttpPost]
-   [ValidateAntiForgeryToken]
-   public async Task<IActionResult> Login(LoginViewModel model)
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (ModelState.IsValid)
         {
+            if (model.Email == null || model.Password == null)
+            {
+                ModelState.AddModelError(string.Empty, "Email and password are required.");
+                return View(model);
+            }
+
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
             if (result.Succeeded)
@@ -26,21 +32,18 @@ public class AccountController : Controller
                 return RedirectToAction("Index", "Home");
             }
 
-            switch (result.IsNotAllowed)
+            if (result.IsNotAllowed)
             {
-                case true:
-                    ModelState.AddModelError(string.Empty, "Your account is not allowed to login at this time.");
-                    break;
+                ModelState.AddModelError(string.Empty, "Your account is not allowed to login at this time.");
             }
-
-            switch (result.IsLockedOut)
+            else if (result.IsLockedOut)
             {
-                case true:
-                    ModelState.AddModelError(string.Empty, "Your account is locked out.");
-                    break;
+                ModelState.AddModelError(string.Empty, "Your account is locked out.");
             }
-
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            }
         }
 
         return View(model);

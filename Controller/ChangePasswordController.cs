@@ -35,31 +35,33 @@ namespace MyBlog.Controllers
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound("Unable to find the user");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            // Ensure the current password is correct
-            var result = await _signInManager.PasswordSignInAsync(user, model.OldPassword, false, lockoutOnFailure: false);
-            if (!result.Succeeded)
+            if (string.IsNullOrEmpty(model.OldPassword))
             {
-                ModelState.AddModelError("OldPassword", "Invalid current password");
+                ModelState.AddModelError("OldPassword", "Current password is required.");
                 return View(model);
             }
 
-            // Update the password for the user
-            var updatePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-            if (!updatePasswordResult.Succeeded)
+            if (string.IsNullOrEmpty(model.NewPassword))
             {
-                foreach (var error in updatePasswordResult.Errors)
+                ModelState.AddModelError("NewPassword", "New password is required.");
+                return View(model);
+            }
+
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (!changePasswordResult.Succeeded)
+            {
+                foreach (var error in changePasswordResult.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
                 return View(model);
             }
 
-            // Sign the user out to force a re-login with the new password
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Account"); // Redirect to the login page
+            await _signInManager.RefreshSignInAsync(user);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

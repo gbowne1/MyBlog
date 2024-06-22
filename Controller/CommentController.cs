@@ -7,7 +7,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using MyBlog.Models;
 
-
 namespace MyBlog.Controllers
 {
     public class CommentController : Controller
@@ -65,7 +64,14 @@ namespace MyBlog.Controllers
             }
 
             // Authorization check (replace with your logic)
-            if (comment.Author.Id != ((ClaimsPrincipal)HttpContext.User).FindFirstValue(ClaimTypes.NameIdentifier))
+            if (comment.Author == null)
+            {
+                // Handle the case where the comment has no author
+                return Forbid(); // Or handle this case as appropriate for your application
+            }
+
+            var userId = ((ClaimsPrincipal)HttpContext.User).FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null || comment.Author.Id != userId)
             {
                 return Forbid(); // Or display an appropriate error message
             }
@@ -79,6 +85,11 @@ namespace MyBlog.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var comment = await _context.Comments.FindAsync(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

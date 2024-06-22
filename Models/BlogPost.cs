@@ -19,7 +19,7 @@ namespace MyBlog.Models
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public ICollection<Tag> Tags { get; set; }
 
@@ -32,11 +32,24 @@ namespace MyBlog.Models
 
         public string ApplicationUserId { get; set; }
 
-        public ApplicationUser Author { get; set; }
+        public ApplicationUser? Author { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 
         public ICollection<TagBlogPosts> TagBlogPosts { get; set; }
 
+        public BlogPost()
+        {
+            Title = string.Empty;
+            Content = string.Empty;
+            CreatedAt = DateTime.UtcNow;
+            PublishDate = DateTime.UtcNow;
+            ImageUrl = string.Empty;
+            Summary = string.Empty;
+            ApplicationUserId = string.Empty;
+            Tags = new List<Tag>();
+            Comments = new List<Comment>();
+            TagBlogPosts = new List<TagBlogPosts>();
+        }
     }
 }

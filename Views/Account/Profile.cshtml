@@ -9,10 +9,17 @@
 <!-- Display other user details here -->
 
 <h2>Blog Posts</h2>
-@foreach (var post in Model.Posts)
+@if (Model.Posts != null)
 {
-    <div>
-        <h3><a href="/Post/Details/@post.Id">@post.Title</a></h3>
-        <p>Published: @post.PublishDate</p>
-    </div>
+    foreach (var post in Model.Posts)
+    {
+        <div>
+            <h3><a href="/Post/Details/@post.Id">@post.Title</a></h3>
+            <p>Published: @post.PublishDate</p>
+        </div>
+    }
+}
+else
+{
+    <p>No blog posts available.</p>
 }
