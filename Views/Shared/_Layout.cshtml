@@ -4,15 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyBlog</title>
+    <meta name="description" content="Welcome to MyBlog, your source for software development insights and coding tutorials." />
+    <meta name="keywords" content="software development, coding, programming, tutorials, blog" />
     <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/site.css" />
     <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyBlog</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">MyBlog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,16 +22,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
                         </li>
                     </ul>
                 </div>
@@ -37,9 +39,10 @@
                     <div class="input-group">
                         <input class="form-control" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
-                        <button class="btn btn-outline-info" type="submit">Search</button>
+                            <button class="btn btn-outline-info" type="submit">Search</button>
+                        </div>
                     </div>
-                 </form>
+                </form>
             </div>
         </nav>
     </header>
@@ -50,24 +53,24 @@
     </div>
 
     <footer class="border-top footer text-muted">
-     <div class="container" style="text-align: center;">
-         <div style="margin-bottom: 10px;">
-             <a href="https://www.facebook.com/gbowne1/"><i class="fab fa-facebook"></i></a>
-             <a href="https://twitter.com/gbowne1"><i class="fab fa-twitter"></i></a>
-             <a href="https://www.youtube.com/channel/UCF7M0aujxmyljaRICq1C8WA"><i class="fab fa-youtube"></i></a>
-             <a href="https://www.reddit.com/user/gbowne1"><i class="fab fa-reddit"></i></a>
-             <a href="https://stackoverflow.com/users/14910204/greg-bowne"><i class="fab fa-stack-overflow"></i></a>
-             <a href="https://twitch.tv/gbowne1/"><i class="fab fa-twitch"></i></a>
-             <a href="https://www.instagram.com/gbowne1/"><i class="fab fa-instagram"></i></a>
-             <a href="https://github.com/gbowne1"><i class="fab fa-github"></i></a>
-         </div>
-         &copy; 2024 - Gregory Bowne - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-     </div>
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="https://www.facebook.com/gbowne1/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/gbowne1" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.youtube.com/channel/UCF7M0aujxmyljaRICq1C8WA" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.reddit.com/user/gbowne1" aria-label="Reddit"><i class="fab fa-reddit"></i></a>
+                <a href="https://stackoverflow.com/users/14910204/greg-bowne" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                <a href="https://twitch.tv/gbowne1/" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+                <a href="https://www.instagram.com/gbowne1/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/gbowne1" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            &copy; @DateTime.Now.Year - Gregory Bowne - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
     </footer>
-    <script src="/lib/font-awesome/js/all.min.js"></script>
     <script src="/lib/jquery/jquery.min.js"></script>
     <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/lib/popper.js/umd/popper.min.js"></script>
+    <script src="/lib/font-awesome/js/all.min.js"></script>
     <script src="/lib/tinymce/tinymce.min.js"></script>
     <script src="/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
