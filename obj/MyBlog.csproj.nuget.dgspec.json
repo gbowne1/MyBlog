@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/gbowne1/Documents/MyBlog/MyBlog.csproj": {}
+    "C:\\Users\\gbown\\OneDrive\\Documents\\Programming\\MyBlog\\MyBlog.csproj": {}
   },
   "projects": {
-    "/home/gbowne1/Documents/MyBlog/MyBlog.csproj": {
+    "C:\\Users\\gbown\\OneDrive\\Documents\\Programming\\MyBlog\\MyBlog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/gbowne1/Documents/MyBlog/MyBlog.csproj",
+        "projectUniqueName": "C:\\Users\\gbown\\OneDrive\\Documents\\Programming\\MyBlog\\MyBlog.csproj",
         "projectName": "MyBlog",
-        "projectPath": "/home/gbowne1/Documents/MyBlog/MyBlog.csproj",
-        "packagesPath": "/home/gbowne1/.nuget/packages/",
-        "outputPath": "/home/gbowne1/Documents/MyBlog/obj/",
+        "projectPath": "C:\\Users\\gbown\\OneDrive\\Documents\\Programming\\MyBlog\\MyBlog.csproj",
+        "packagesPath": "C:\\Users\\gbown\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gbown\\OneDrive\\Documents\\Programming\\MyBlog\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/gbowne1/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\gbown\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -32,11 +32,16 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",
@@ -142,7 +147,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.410/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
