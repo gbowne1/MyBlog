@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyBlog.Services;
+using MyBlog.Models;
 
 public class AboutController : Controller
 {

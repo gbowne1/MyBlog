@@ -31,7 +31,6 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.26" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.2" />
   </ItemGroup>
 
