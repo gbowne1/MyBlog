@@ -1,54 +1,46 @@
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using MyBlog.Data;
 using MyBlog.Models;
 
 namespace MyBlog.Services
 {
     public class BlogPostService : IBlogPostService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly BlogDbContext _blogDbContext;
 
-        // Constructor to inject the database context
-        public BlogPostService(ApplicationDbContext context)
+        public BlogPostService(BlogDbContext blogDbContext)
         {
-            _context = context;
+            _blogDbContext = blogDbContext;
         }
 
-        // Retrieve all blog posts
         public IEnumerable<BlogPost> GetBlogPosts()
         {
-            return _context.BlogPosts.ToList();
+            return _blogDbContext.BlogPosts.ToList();
         }
 
-        // Retrieve a blog post by its ID
         public BlogPost? GetBlogPostById(int id)
         {
-            return _context.BlogPosts.Find(id);
+            return _blogDbContext.BlogPosts.FirstOrDefault(bp => bp.Id == id);
         }
 
-        // Create a new blog post
         public void CreateBlogPost(BlogPost blogPost)
         {
-            _context.BlogPosts.Add(blogPost);
-            _context.SaveChanges();
+            _blogDbContext.BlogPosts.Add(blogPost);
+            _blogDbContext.SaveChanges();
         }
 
-        // Update an existing blog post
         public void UpdateBlogPost(BlogPost blogPost)
         {
-            _context.Entry(blogPost).State = EntityState.Modified;
-            _context.SaveChanges();
+            _blogDbContext.BlogPosts.Update(blogPost);
+            _blogDbContext.SaveChanges();
         }
 
-        // Delete a blog post by ID
         public void DeleteBlogPost(int id)
         {
-            var blogPost = _context.BlogPosts.Find(id);
+            var blogPost = _blogDbContext.BlogPosts.FirstOrDefault(bp => bp.Id == id);
             if (blogPost != null)
             {
-                _context.BlogPosts.Remove(blogPost);
-                _context.SaveChanges();
+                _blogDbContext.BlogPosts.Remove(blogPost);
+                _blogDbContext.SaveChanges();
             }
         }
     }

@@ -12,18 +12,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-                           ?? "Server=(localdb)\\mssqllocaldb;Database=MyBlog;Trusted_Connection=True;MultipleActiveResultSets=true";
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (string.IsNullOrEmpty(connectionString))
+    {
+        Console.WriteLine("Warning: DefaultConnection string is not configured. Falling back to the default connection string.");
+        connectionString = "Server=(localdb)\\mssqllocaldb;Database=MyBlog;Trusted_Connection=True;MultipleActiveResultSets=true";
+    }
     options.UseSqlServer(connectionString);
 });
 
-// Register custom services for Dependency Injection
-builder.Services.AddScoped<IBlogPostService, BlogPostService>();
-builder.Services.AddTransient<IAboutContentService, AboutContentService>();
-
 // Configure Identity for authentication and authorization
+// Only ONE call to AddDefaultIdentity
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Register custom services for Dependency Injection
+builder.Services.AddTransient<IAboutContentService, AboutContentService>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -37,63 +41,29 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler(errorApp =>
+    {
+        errorApp.Run(async context =>
+        {
+            var exceptionHandlerPathFeature = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>();
+            if (exceptionHandlerPathFeature?.Error != null)
+            {
+                var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+                logger.LogError(exceptionHandlerPathFeature.Error, "An unhandled exception occurred.");
+            }
+            await context.Response.WriteAsync("An error occurred. Redirecting to error page...");
+            context.Response.Redirect("/Home/Error");
+        });
+    });
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
-app.UseAuthentication();
+app.UseAuthentication(); // Added UseAuthentication middleware
 app.UseAuthorization();
-
-// Custom routes for specific controllers
-app.MapControllerRoute(
-    name: "about",
-    pattern: "about",
-    defaults: new { controller = "About", action = "Index" });
-
-app.MapControllerRoute(
-    name: "account",
-    pattern: "account/{action}/{id?}",
-    defaults: new { controller = "Account" });
-
-app.MapControllerRoute(
-    name: "blog",
-    pattern: "blog/{action}/{slug?}",
-    defaults: new { controller = "Blog" });
-
-app.MapControllerRoute(
-    name: "changepassword",
-    pattern: "change-password/{action}/{id?}",
-    defaults: new { controller = "ChangePassword" });
-
-app.MapControllerRoute(
-    name: "comments",
-    pattern: "comments/{action}/{id?}",
-    defaults: new { controller = "Comment" });
-
-app.MapControllerRoute(
-    name: "editor",
-    pattern: "editor/{action}/{id?}",
-    defaults: new { controller = "Editor" });
-
-app.MapControllerRoute(
-    name: "external-login",
-    pattern: "external-login/{action}/{id?}",
-    defaults: new { controller = "ExternalLogin" });
-
-app.MapControllerRoute(
-    name: "manage",
-    pattern: "manage/{action}/{id?}",
-    defaults: new { controller = "Manage" });
-
-app.MapControllerRoute(
-    name: "register",
-    pattern: "register/{action}/{id?}",
-    defaults: new { controller = "Register" });
 
 app.MapControllerRoute(
     name: "reset-password",
@@ -106,5 +76,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-
 app.Run();
