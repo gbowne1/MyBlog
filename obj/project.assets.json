@@ -9430,11 +9430,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gbown\\Documents\\MyBlog\\MyBlog.csproj",
+      "projectUniqueName": "D:\\MyBlog\\MyBlog.csproj",
       "projectName": "MyBlog",
-      "projectPath": "C:\\Users\\gbown\\Documents\\MyBlog\\MyBlog.csproj",
+      "projectPath": "D:\\MyBlog\\MyBlog.csproj",
       "packagesPath": "C:\\Users\\gbown\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gbown\\Documents\\MyBlog\\obj\\",
+      "outputPath": "D:\\MyBlog\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\gbown\\AppData\\Roaming\\NuGet\\NuGet.Config"
