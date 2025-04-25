@@ -1,78 +1,57 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyBlog</title>
-    <meta name="description" content="Welcome to MyBlog, your source for software development insights and coding tutorials." />
-    <meta name="keywords" content="software development, coding, programming, tutorials, blog" />
-    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">MyBlog</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">MyBlog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                            <a class="nav-link" asp-controller="Blog" asp-action="Index">Blog</a>
                         </li>
                     </ul>
+
+                    <partial name="_LoginPartial" />
                 </div>
-                <form class="form-inline my-2 my-lg-0 ml-auto">
-                    <div class="input-group">
-                        <input class="form-control" type="search" name="searchTerm" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-info" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container text-center">
-            <div class="mb-3">
-                <a href="https://www.facebook.com/gbowne1/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://twitter.com/gbowne1" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.youtube.com/channel/UCF7M0aujxmyljaRICq1C8WA" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.reddit.com/user/gbowne1" aria-label="Reddit"><i class="fab fa-reddit"></i></a>
-                <a href="https://stackoverflow.com/users/14910204/greg-bowne" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
-                <a href="https://twitch.tv/gbowne1/" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
-                <a href="https://www.instagram.com/gbowne1/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/gbowne1" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-            &copy; @DateTime.Now.Year - Gregory Bowne - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <main role="main" class="container mt-4">
+        @RenderBody()
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">&copy; @DateTime.Now.Year - MyBlog</span>
         </div>
     </footer>
-    <script src="/lib/jquery/jquery.min.js"></script>
-    <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/lib/popper.js/umd/popper.min.js"></script>
-    <script src="/lib/font-awesome/js/all.min.js"></script>
-    <script src="/lib/tinymce/tinymce.min.js"></script>
-    <script src="/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
