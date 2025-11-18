@@ -11,8 +11,6 @@ namespace MyBlog.Controllers
         public BlogController(ApplicationDbContext context)
         {
             _context = context;
-            
-            // REMOVE THE SEEDING CODE HERE. The constructor is now clean.
         }
 
         public IActionResult Index()
@@ -22,3 +20,4 @@ namespace MyBlog.Controllers
         }
     }
 }
+
