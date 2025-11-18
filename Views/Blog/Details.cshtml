@@ -1,0 +1,27 @@
+@* MyBlog/Views/Blog/Details.cshtml (NEW FILE) *@
+@model MyBlog.Models.BlogPost
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<h1>@Model.Title</h1>
+
+<p class="text-muted">Posted on @Model.CreatedAt.ToLocalTime()</p>
+
+<div class="card bg-light p-4 mb-4">
+    <p>@Html.Raw(Model.Content.Replace("\n", "<br/>"))</p>
+</div>
+
+<div>
+    {{-- Links for quick actions --}}
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+        <i class="fa-solid fa-edit"></i> Edit
+    </a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger me-2">
+        <i class="fa-solid fa-trash"></i> Delete
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to List
+    </a>
+</div>
