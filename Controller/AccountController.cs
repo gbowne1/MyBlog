@@ -15,7 +15,7 @@ namespace MyBlog.Controllers
         public IActionResult Register()
         {
             ViewData["Title"] = "Registration Coming Soon";
-            return View("Placeholder");
+            return View();
         }
 
         // Placeholder for Manage (signed in)
