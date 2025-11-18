@@ -11,18 +11,8 @@ namespace MyBlog.Controllers
         public BlogController(ApplicationDbContext context)
         {
             _context = context;
-
-            // Seed if empty
-            if (!_context.BlogPosts.Any())
-            {
-                _context.BlogPosts.Add(new BlogPost
-                {
-                    Title = "Welcome to My Blog",
-                    Content = "This is your first blog post!",
-                    CreatedAt = DateTime.UtcNow
-                });
-                _context.SaveChanges();
-            }
+            
+            // REMOVE THE SEEDING CODE HERE. The constructor is now clean.
         }
 
         public IActionResult Index()
