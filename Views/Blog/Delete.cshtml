@@ -1,0 +1,45 @@
+@* MyBlog/Views/Blog/Delete.cshtml (NEW FILE) *@
+@model MyBlog.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Delete Post";
+}
+
+<h1 class="text-danger">Delete Post</h1>
+
+<h3>Are you sure you want to delete this post? This action cannot be undone.</h3>
+<hr />
+
+<div class="card bg-warning-subtle p-3 mb-4 border-danger border-3">
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd class="col-sm-9">
+            @Model.CreatedAt.ToLocalTime()
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.Raw(Model.Content.Substring(0, Math.Min(Model.Content.Length, 100)) + (Model.Content.Length > 100 ? "..." : ""))
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed">
+    {{-- Hidden field to pass the Id to the POST action --}}
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">
+        <i class="fa-solid fa-trash-alt"></i> Confirm Delete
+    </button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+        <i class="fa-solid fa-ban"></i> Cancel
+    </a>
+</form>
