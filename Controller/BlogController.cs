@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; // Required for FindAsync and other EF methods
+using Microsoft.EntityFrameworkCore;
 using MyBlog.Data;
 using MyBlog.Models;
 
@@ -15,49 +15,44 @@ namespace MyBlog.Controllers
         }
 
         // READ: Display all posts
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var posts = _context.BlogPosts.OrderByDescending(p => p.CreatedAt).ToList();
+            // OPTIMIZATION: Changed ToList() to ToListAsync()
+            var posts = await _context.BlogPosts.OrderByDescending(p => p.CreatedAt).ToListAsync();
             return View(posts);
         }
-        
+
         // READ: Display a single post (Details)
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
-            // Find the post by ID
             var post = await _context.BlogPosts.FindAsync(id);
-            
-            if (post == null)
-            {
-                return NotFound();
-            }
+
+            if (post == null) return NotFound();
 
             return View(post);
         }
 
-        // CREATE: GET action to display the creation form
+        // CREATE: GET
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // CREATE: POST action to handle form submission
+        // CREATE: POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(BlogPost post)
+        public async Task<IActionResult> Create(BlogPost post)
         {
             if (ModelState.IsValid)
             {
                 post.CreatedAt = DateTime.UtcNow;
 
                 _context.BlogPosts.Add(post);
-                _context.SaveChanges();
+                // OPTIMIZATION: Changed SaveChanges() to SaveChangesAsync()
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -65,47 +60,49 @@ namespace MyBlog.Controllers
             return View(post);
         }
 
-        // UPDATE: GET action to display the edit form
+        // UPDATE: GET
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
+            if (id == null) return NotFound();
+
             var post = await _context.BlogPosts.FindAsync(id);
-            
-            if (post == null)
-            {
-                return NotFound();
-            }
-            
+
+            if (post == null) return NotFound();
+
             return View(post);
         }
 
-        // UPDATE: POST action to handle save changes
+        // UPDATE: POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, BlogPost post)
         {
-            if (id != post.Id)
-            {
-                return NotFound();
-            }
+            if (id != post.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Mark the post as modified and save changes
-                    _context.Update(post);
+                    // FIX: Prevent overwriting CreatedAt with default date
+                    // 1. Get the existing post from DB (AsNoTracking is not needed here as we want to update it)
+                    var existingPost = await _context.BlogPosts.FindAsync(id);
+                    
+                    if (existingPost == null) return NotFound();
+
+                    // 2. Update only the editable fields
+                    existingPost.Title = post.Title;
+                    existingPost.Content = post.Content;
+                    // Add other fields here if you have them (e.g. ImageUrl)
+                    
+                    // Note: We do NOT update existingPost.CreatedAt
+                    
+                    _context.Update(existingPost);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    // Optional: Add logic here to handle concurrent updates if needed
-                    if (!_context.BlogPosts.Any(e => e.Id == id))
+                    if (!PostExists(post.Id))
                     {
                         return NotFound();
                     }
@@ -119,39 +116,39 @@ namespace MyBlog.Controllers
             return View(post);
         }
 
-        // DELETE: GET action to show the confirmation screen
+        // DELETE: GET
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var post = await _context.BlogPosts.FindAsync(id);
-            
-            if (post == null)
-            {
-                return NotFound();
-            }
+
+            if (post == null) return NotFound();
 
             return View(post);
         }
 
-        // DELETE: POST action to execute the deletion
+        // DELETE: POST
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var post = await _context.BlogPosts.FindAsync(id);
-            
+
             if (post != null)
             {
                 _context.BlogPosts.Remove(post);
                 await _context.SaveChangesAsync();
             }
-            
+
             return RedirectToAction(nameof(Index));
+        }
+
+        // Helper method to check existence
+        private bool PostExists(int id)
+        {
+            return _context.BlogPosts.Any(e => e.Id == id);
         }
     }
 }
