@@ -11,6 +11,7 @@ using MyBlog.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddRazorPqges();
 builder.Services.AddControllersWithViews();
 
 // In-Memory DB for development
@@ -21,7 +22,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
 {
     options.SignIn.RequireConfirmedAccount = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 6;
 })
+.AddRoles<IdentityRole>() // Optionally add role management support
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
@@ -48,3 +52,4 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 app.Run();
+
