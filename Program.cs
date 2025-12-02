@@ -11,12 +11,15 @@ using MyBlog.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPqges();
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
+// Helpful EF developer exception page (development only)
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // In-Memory DB for development
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("MyBlogDb"));
+    options.UseInMemoryDatabase("MyBlogDb")); 
 
 // Identity setup
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
@@ -52,4 +55,3 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 app.Run();
-
