@@ -1,0 +1,31 @@
+{
+  "omnisharp.useModernNet": true,
+  "omnisharp.path": "latest",
+  "omnisharp.enableRoslynAnalyzers": true,
+  "omnisharp.enableEditorConfigSupport": true,
+  "omnisharp.projectLoadTimeout": 120000,
+  "csharp.suppressDotnetInstallWarning": true,
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "ms-dotnettools.csharp",
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+
+  "razor.format.enable": true,
+  "razor.languageServer.trace.server": "off",
+
+  "files.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    ".vs": true,
+    ".vscode/.history": true
+  },
+
+  "nugetPackageManager.completion.enableAutoComplete": true,
+
+  "csharp.referencesCodeLens.enabled": true,
+  "csharp.testsCodeLens.enabled": false,
+
+  "terminal.integrated.defaultProfile.linux": "bash"
+}
