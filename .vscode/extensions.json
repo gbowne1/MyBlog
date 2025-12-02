@@ -1,21 +1,10 @@
 {
-	// See https://go.microsoft.com/fwlink/?LinkId=827846
-	// for the documentation about the extensions.json format
-	"recommendations": [
-		"ritwickdey.LiveServer",
-		"ms-dotnettools.csharp",
-		"VisualStudioExptTeam.vscodeintellicode",
-		"MS-vsliveshare.vsliveshare",
-		"ms-vscode.test-adapter-converter",
-		"jmrog.vscode-nuget-package-manager",
-		"jorgeserrano.vscode-csharp-snippets",
-		"formulahendry.dotnet-test-explorer",
-		"kreativ-software.csharpextensions",
-		"tintoy.msbuild-project-tools",
-		"ms-dotnettools.vscode-dotnet-runtime",
-		"formulahendry.dotnet-test-explorer",
-		"ms-dotnettools.vscode-dotnet-pack",
-		"formulahendry.dotnet",
-		"Fudge.auto-using"
-	]
+  "recommendations": [
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-azuretools.vscode-docker",
+    "jmrog.vscode-nuget-package-manager",
+    "eamodio.gitlens"
+  ],
+  "unwantedRecommendations": []
 }
