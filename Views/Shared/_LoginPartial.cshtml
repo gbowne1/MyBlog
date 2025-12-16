@@ -6,24 +6,30 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    // LOGGED IN USER LINKS
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+        @* Link to AccountController/Manage action *@
+        <a class="nav-link text-light" asp-controller="Account" asp-action="Manage" title="Manage">
             Hello, @User.Identity?.Name!
         </a>
     </li>
     <li class="nav-item">
-        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+        @* Form to POST to AccountController/Logout action *@
+        <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
             <button type="submit" class="nav-link btn btn-link text-light border-0">Logout</button>
         </form>
     </li>
 }
 else
 {
+    // LOGGED OUT USER LINKS
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        @* Link to AccountController/Login action *@
+        <a class="nav-link text-light" asp-controller="Account" asp-action="Login">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        @* Link to AccountController/Register action *@
+        <a class="nav-link text-light" asp-controller="Account" asp-action="Register">Register</a>
     </li>
 }
 </ul>
