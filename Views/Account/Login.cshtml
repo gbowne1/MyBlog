@@ -1,0 +1,14 @@
+@model MyBlog.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Log In";
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+<div class="row">
+    @* ... Login form content ... *@
+</div>
+@* Don't forget to include the Scripts section for validation *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
