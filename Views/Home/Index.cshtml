@@ -1,8 +1,60 @@
+@model IEnumerable<MyBlog.Models.BlogPost>
+
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Home - Recent Posts";
 }
 
-<div class="text-center">
+<div class="text-center mb-5">
     <h1 class="display-4">Welcome to MyBlog</h1>
-    <p>This is your homepage. <a href="/Blog">View Blog Posts</a></p>
+    <p>This is the starting point for my personal development and thoughts.</p>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-secondary">✨ Latest Posts</h2>
+        <p>Check out what's new on the blog.</p>
+    </div>
+</div>
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        // Loop through each BlogPost passed from the HomeController
+        foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                        <p class="card-text text-muted">
+                            <small>Posted on: @item.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</small>
+                        </p>
+                        <p class="card-text">
+                            @* Display the first 150 characters of the content as a summary *@
+                            @(item.Content.Length > 150 ? item.Content.Substring(0, 150) + "..." : item.Content)
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Read More &raquo;</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-12">
+            <div class="alert alert-info" role="alert">
+                No blog posts have been added yet. Be the first to <a asp-controller="Blog" asp-action="Create">create a post</a>!
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+
+<div class="text-center mt-4">
+     <p>Can't find what you're looking for? <a asp-controller="Blog" asp-action="Index">View All Blog Posts</a></p>
 </div>
