@@ -1,0 +1,33 @@
+@* We don't need a model yet, as it's a simple placeholder view *@
+
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @* This is where you would put a side navigation for account settings *@
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                Profile Overview
+            </a>
+            <a href="#" class="list-group-item list-group-item-action disabled">Change Password (Coming Soon)</a>
+            <a href="#" class="list-group-item list-group-item-action disabled">My Posts (Coming Soon)</a>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h1 class="display-4">@ViewData["Title"]</h1>
+        
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">User Management Features are Coming Soon!</h4>
+            <p>This is your personalized dashboard area. Since you are logged in as **@User.Identity?.Name** (your email), you will be able to manage your account details here once the features are built.</p>
+            <hr>
+            <p class="mb-0">For now, you can access the secure blog actions (Create, Edit, Delete) if you are authorized to do so.</p>
+        </div>
+        
+        <p>
+            <a asp-controller="Blog" asp-action="Create" class="btn btn-primary">Create a New Blog Post</a>
+        </p>
+    </div>
+</div>
