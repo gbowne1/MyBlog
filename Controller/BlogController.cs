@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 using MyBlog.Data;
 using MyBlog.Models;
 
@@ -155,5 +157,3 @@ namespace MyBlog.Controllers
         }
     }
 }
-
-
