@@ -9,9 +9,10 @@ namespace MyBlog.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public BlogController(ApplicationDbContext context)
+        public BlogController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // READ: Display all posts
@@ -154,4 +155,5 @@ namespace MyBlog.Controllers
         }
     }
 }
+
 
