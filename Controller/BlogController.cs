@@ -50,6 +50,8 @@ namespace MyBlog.Controllers
             {
                 post.CreatedAt = DateTime.UtcNow;
 
+                post.AuthorId = _userManager.GetUserId(User);
+
                 _context.BlogPosts.Add(post);
                 // OPTIMIZATION: Changed SaveChanges() to SaveChangesAsync()
                 await _context.SaveChangesAsync();
@@ -152,3 +154,4 @@ namespace MyBlog.Controllers
         }
     }
 }
+
