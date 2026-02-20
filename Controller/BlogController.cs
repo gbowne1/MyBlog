@@ -128,7 +128,7 @@ namespace MyBlog.Controllers
         // DELETE: POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var post = await _context.BBlogPosts.FindAsync(id);
 
@@ -147,3 +147,4 @@ namespace MyBlog.Controllers
         }
     }
 }
+
